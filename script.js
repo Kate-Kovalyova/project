@@ -1,3 +1,14 @@
+let numberOfFilms;
+
+function start() {
+    numberOfFilms = +prompt('How many films have you already watched?', '');
+
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+        numberOfFilms = +prompt('How many films have you already watched?', '');
+    }
+}
+start();
+
 const personalMovieDB = {
     count: numberOfFilms,
     movies: {},
@@ -5,16 +16,6 @@ const personalMovieDB = {
     genres: [],
     private: false
 };
-
-let numberOfFilms;
-
-function start() {
-    numberOfFilms = prompt ('How many films have you already watched?', '');
-    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)){
-        numberOfFilms = prompt ('How many films have you already watched?', '');
-    }
-}
-start();
 
 function detectPersonalLevel() {
     if (personalMovieDB.count < 10) {
@@ -44,4 +45,25 @@ function rememberMyFilms() {
 }
 rememberMyFilms();
 
-console.log(personalMovieDB);
+function writeYourGenres() {
+    for (let i = 1; i <= 3; i++) {
+        personalMovieDB.genres[i - 1] = prompt(`Your favourite genre is number ${i}`);
+    }
+}
+writeYourGenres();
+
+// function showMyDB() {
+//     if (personalMovieDB.private = false) {
+//         console.log(personalMovieDB);
+//     } else {
+//         console.log('Access denied!');
+//     }
+// }
+// showMeDB();
+
+function showMyDB (hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
+    }
+}
+showMyDB(personalMovieDB.private);
